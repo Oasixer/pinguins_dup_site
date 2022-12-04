@@ -230,8 +230,10 @@
     100% {opacity:1;}
   }
 	div.fullscreen-invisible{
-		width: 100%;
-		height: 100vh;
+		width: 20%;
+		height: 80vh;
+    margin-top: 35px;
+    z-index: 0;
     position: absolute;
     background-color: rgba(0,0,0,0);
     display: flex;
@@ -254,7 +256,7 @@
     padding: 9px;
 		z-index: 20;
     opacity: 100%;
-    margin: auto;
+    /* margin: auto; */
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-weight: 400;
     letter-spacing: 1px;
@@ -262,8 +264,18 @@
     /* font-family: "Helvetica", serif; */
     padding: 20px 9px;
     border-radius: 5px;
-    box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%)
+		box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
     /* margin: 35vh auto 0 auto; */
+    left: 40%;
+		position: absolute;
+		z-index: 100;
+   -webkit-transform: translateX(-40%);
+   -moz-transform: translateX(-40%);
+   transform: translateX(-40%);
+    top: 40%;
+   -webkit-transform: translateY(-40%);
+   -moz-transform: translateY(-40%);
+   transform: translateY(-40%);
 	}
   button#learnMore:active{
     background: none;
@@ -281,11 +293,11 @@
 </style>
 <svelte:window bind:outerWidth={width}/>
 {#if !floaty}
-  <div class="fullscreen-invisible">
-    <button id="learnMore"
-          on:click={()=>runMoveDispatcher(1)}>Learn More
-    </button>
-  </div>
+  <!-- <div class="fullscreen-invisible"> -->
+	<button id="learnMore"
+				 on:click={()=>runMoveDispatcher(1)}>Learn More
+	</button>
+  <!-- </div> -->
 {/if}
 <div class='menubar'
      class:floaty
@@ -297,9 +309,9 @@
       <Hamburger bind:open={mobileSidebarOpen}/>
     </div>
     {#if y<displayHamburgerHeight || mobileSidebarOpen}
-      <button class='selected' style='font-size: 20px; font-weight: bold; margin-left: 0; padding-top: 27px;' on:click={()=>runMoveDispatcher(0)}>
-      Kaelan Moffett
-      </button>
+      <!-- <button class='selected' style='font-size: 20px; font-weight: bold; margin-left: 0; padding-top: 27px;' on:click={()=>runMoveDispatcher(0)}> -->
+      <!-- Kaelan Moffett -->
+      <!-- </button> -->
     {/if}
     {#if mobileSidebarOpen}
       {#each [...sectionsLeft, ...sectionsRight] as section, n}

@@ -176,7 +176,7 @@
           Mounting: Custom 3D Printed Bracket Tailored to Customer Requirements
         </li>
         <li>
-          Transponder Dimensions: 2" (Diameter), 6.5"
+          Transponder Dimensions: 2" (Diameter), 6.5" (Length)
         </li>
       </ul>
       <h3 style="margin-top: 25px;">Physical specs</h3>
