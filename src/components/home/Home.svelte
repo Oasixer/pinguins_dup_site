@@ -58,9 +58,10 @@
 /* } */
   div#home{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     /* background-color: #400857; */
-    background-color: #000033;
+    /* background-color: #000033; */
+    background-color: #0B1237;
     display: flex;
     flex-flow: column nowrap;
     /* padding: 40px 15px 40px 15px; */
@@ -93,12 +94,14 @@
 	div#filler{
 		opacity: 60%;
 		background-color: #ffffff;
-		width: 100vw;
+		width: 100%;
 		height: 100%;
+		min-height: 50px;
+		opacity: 30%;
     overflow: hidden;
 	}
 	img{
-		opacity: 60%;
+		opacity: 30%;
 	}
 	img#concept-art{
 		width: 60%;
@@ -110,45 +113,6 @@
 		max-width: 40%;
     /* border-radius: 7px; */
 	}
-	div.fullscreen-invisible{
-		width: 100vw;
-		height: 100vh;
-    position: absolute;
-    background-color: rgba(0,0,0,0);
-    display: flex;
-	}
-	button{
-    cursor: pointer;
-    border: none;
-    background: none;
-    outline: none;
-    font-weight: 400;
-    font-family: "Helvetica", serif;
-    font-size:35px;
-		width: 300px;
-		height: 70px;
-    background-color: #5599cc;
-    /* color: #000000; */
-    color: #ffffff;
-    border-radius: 5px;
-    padding: 9px;
-		z-index: 20;
-    opacity: 100%;
-    margin: 20vh auto 0 auto;
-	}
-  button:active{
-    background: none;
-    outline: none;
-  }
-  
-  button:hover{
-    /* color: #f3f5f4; */
-    background-color: #225599;
-  }
-
-  button.selected:focus{
-    outline: none;
-  }
 </style>
 
 <div id='home' class:mobile bind:offsetHeight={height} bind:this={homeElement}>
@@ -163,7 +127,4 @@
 	<div id="filler"></div>
 
 	<!-- </div> -->
-  <div class="fullscreen-invisible">
-    <button>Learn More</button>
-  </div>
 </div>

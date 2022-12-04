@@ -51,7 +51,8 @@
     width: 100%;
     /* background-color: #081012; */
     /* background-color: orange;  */
-		background-color: blue;
+		/* background-color: blue; */
+		background-color: #759ACE;
 		/* orange;  */
       /* #ea8676; */
     height: 80px;
@@ -60,6 +61,7 @@
     align-items: center;
     max-width: 100%;
     overflow: hidden;
+    box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%)
   }
 
   div#singleButton{
@@ -154,17 +156,19 @@
     cursor: pointer;
     /* color: #50555d; */
     /* color: #100000; */
-    color: #ffffff;
+    color: #f7f5f4;
     text-transform: uppercase;
-    font-weight: 400;
-    font-size: 25px;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    /* font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif; */
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-weight: 400;
     letter-spacing: 1px;
     /* font-family: "Open Sans", sans-serif; */
-    font-family: "Helvetica", serif;
+    /* font-family: "Helvetica", serif; */
     margin: 0;
-    padding: 9px;
+    padding: 20px 9px;
+    border-radius: 5px;
   }
 
   div.menubar.smaller button{
@@ -178,15 +182,19 @@
   button:active{
     background: none;
     outline: none;
+    background-color: #759ACE;
   }
   
   button:hover{
-    color: #f3f5f4;
+    /* color: #da9d41; */
+    color: #daaa55;
+		color: #fffcbf;
+		color: #5f5dab;
   }
 
   button.selected{
-    color: #f3f5f4;
     outline: none;
+    background-color: #86A8D6;
   }
   button.selected:focus{
     outline: none;
@@ -221,8 +229,64 @@
     0% {opacity:0;}
     100% {opacity:1;}
   }
+	div.fullscreen-invisible{
+		width: 100%;
+		height: 100vh;
+    position: absolute;
+    background-color: rgba(0,0,0,0);
+    display: flex;
+	}
+	button#learnMore{
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+    font-weight: 400;
+    font-family: "Helvetica", serif;
+    font-size:25px;
+    text-transform: none;
+		width: 300px;
+		height: 70px;
+    /* color: #000000; */
+    color: #ffffff;
+    background-color: #86A8D6;
+    border-radius: 5px;
+    padding: 9px;
+		z-index: 20;
+    opacity: 100%;
+    margin: auto;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    /* font-family: "Open Sans", sans-serif; */
+    /* font-family: "Helvetica", serif; */
+    padding: 20px 9px;
+    border-radius: 5px;
+    box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%)
+    /* margin: 35vh auto 0 auto; */
+	}
+  button#learnMore:active{
+    background: none;
+    outline: none;
+  }
+  
+  button#learnMore:hover{
+    /* color: #f3f5f4; */
+		background-color: #759ACE;
+  }
+
+  button#learnMore.selected:focus{
+    outline: none;
+  }
 </style>
 <svelte:window bind:outerWidth={width}/>
+{#if !floaty}
+  <div class="fullscreen-invisible">
+    <button id="learnMore"
+          on:click={()=>runMoveDispatcher(1)}>Learn More
+    </button>
+  </div>
+{/if}
 <div class='menubar'
      class:floaty
      class:smaller={width<950 && !mobile}
