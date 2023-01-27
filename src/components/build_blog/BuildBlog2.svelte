@@ -1,30 +1,30 @@
 <script>
   export let height=undefined;
   
-  let src_gif = './images/gps.gif';
-  let src_deeptrekker = './images/deep_trekker_cropped.jpg';
   export let mobile;
   export let width;
 
-	$: wide = width > 800;
+  let images = [
+    "mould.jpg",
+    "packages.jpg",
+    "piezo.jpg",
+    "machining.jpg"
+  ];
 
-  let overviewElement;
-  let text=[`Our product is called Distributed Underwater Positioning (DUP). DUP allows robots underwater to determine their position in 3D space through a system of multilateration relative to fixed beacons, much like how GPS works above water. `,
-    "The need for this tech was brought to our attention by our stakeholder, Deep Trekker, who found that existing solutions in this domain didn't meet the requirements for positioning of their Remotely Operated underwater Vehicle (ROV) as it performs tasks. We're now working with Deep Trekker to design a module that can be affixed to the ROV, to perform precise positioning relative to fixed beacons that will be affixed underwater nearby. ",
-    "The DUP system will consist of a transponder node attached to the mobile ROV and several stationary transponder nodes. The ROV and the stationary nodes will send acoustic signals back and forth. The time of flight of these signals will be used to determine the position of the ROV."
-  ]
-  
+	/* $: wide = width > 800; */
+
+  let blogElement;
   import { onMount } from 'svelte';
   onMount(async => {
     const bar = () => {
-      height = overviewElement.offsetHeight;
+      height = blogElement.offsetHeight;
     }
     setTimeout(bar, 10);
   });
 </script>
 
 <style>
-  div#overview{
+  div#buildBlog{
     width: 100%;
     height: 100%;
     /* background-color: #0B1237; */
@@ -34,16 +34,7 @@
     /* padding: 40px 15px 40px 15px; */
     padding: 70px;
   }
-  /* div.#overview{ */
-    /* width: 100%; */
-    /* height: 100%; */
-    /* [> background-color: #0B1237; <] */
-    /* background-color: #031767; */
-    /* display: flex; */
-    /* flex-flow: column nowrap; */
-    /* [> padding: 40px 15px 40px 15px; <] */
-    /* padding: 70px; */
-  /* } */
+
   div.dark-container{
     background-color: #0B1237;
     border-radius: 5px;
@@ -60,11 +51,12 @@
     flex-flow: row wrap;
     align-items: stretch;
   }
+
   div.hstack.mobile{
     flex-flow: row wrap;
   }
 
-  div#overview.mobile{
+  div#buildBlog.mobile{
     padding: 50px 20px 60px 20px;
   }
 
@@ -99,6 +91,7 @@
 		border-radius: 6px;
     box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%)
 	}
+
 	div.card1{
 		/* background-color: #f7f5f4; */
 		background-color: #5f5DAB;
@@ -136,6 +129,7 @@
     font-size: 19px;
     margin-bottom: 15px;
   }
+
   p.mobile{
     text-align: justify;
     width: 100%;
@@ -161,12 +155,37 @@
 		border-radius: 10px;
   }
 
+  h3{
+    font-weight: 700;
+		font-family: "Roboto Slab" "Times New Roman", serif;
+    font-size: 24px;
+    color: #031767;
+    color: #f7f5f4;
+    margin-left: 0;
+		margin-bottom: 0;
+  }
 </style>
-<div id='overview'
+
+<div id='buildBlog'
   class:mobile
-  bind:this={overviewElement}
+  bind:this={blogElement}
   bind:offsetHeight={height}>
-    <h1 class:mobile>Overview</h1>
+    <h1 class:mobile>BuildBlog</h1>
+		<div class='vstack'>
+			<div class="card card1">
+        <h3>Build Blog Week 1 (Jan 27th)</h3>
+        <p>
+This week, we finalized our BOM, and received our Acetal tube, Teensy microprocessors, electronics, and polyurethane. We machine a prototype acetal tube using a lathe at the engineering machine shop on campus. The end cap mould was 3d printed, ready to be have polyurethane poured into it to seal the pressure vessel. On the software side, we received the teensy microprocessors we intend to use, and are now working on implementing a data collection system for the testing phase in mid February. We also finalized the coding and testing our main algorithms for the project.  We also finalized our testing plan in collaboration with our stakeholder, Deep Trekker
+        </p>
+			</div>
+      <div class="card card1" style="display: flex; flex-flow: column nowrap;">
+        <h3>Images</h3>
+        {#each images as image}
+          <img class='blog-image-sqr' alt='alt' src={image}/>
+        {/each}
+			</div>
+		</div>
+		<!--
     {#if !mobile}
       <div class='hstack' class:mobile>
 				<div class='card card1' class:wide>
@@ -185,5 +204,5 @@
 					<img alt='demo gif' class= "clip-top card" id='demo-gif' src={src_gif}/>
 					<img class="clip-top card" style="margin-top: 0;" alt='deep trekker robot' id='deeptrekker' src={src_deeptrekker}/>
 				</div>
-    {/if}
+		{/if} -->
 </div>

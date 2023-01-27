@@ -137,7 +137,7 @@
   }
 	.clip-top{
 		position: relative;
-		margin-top: -60px;
+		margin-top: 10px;
 	}
 </style>
 <div id='specifications'

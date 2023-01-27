@@ -7,7 +7,7 @@
 	import Team from '../components/team/Team.svelte';
   /* import WorkExperiencePage from '../components/resume/WorkExperiencePage.svelte'; */
   /* import ResumePage from '../components/resume/ResumePage.svelte'; */
-  /* import SkillsPage from '../components/resume/SkillsPage.svelte'; */
+	import BuildBlog from '../components/build_blog/BuildBlog.svelte';
   import BackToTop from '../components/components/BackToTop.svelte';
   import Hamburger from '../components/components/Hamburger.svelte';
   import HamburgerModal from '../components/components/HamburgerModal.svelte';
@@ -35,7 +35,8 @@
   let sections = [
     {component: Home, name:'Home', excludeFromMenubar: false},
     {component: Overview, name:'Overview', excludeFromMenubar: false},
-    {component: Specifications, name:'Specifications', excludeFromMenubar: false},
+    {component: Specifications, name:'Specs', excludeFromMenubar: false},
+		{component: BuildBlog, name: 'Build Blog', excludeFromMenubar: false},
     {component: Team, name:'Team', excludeFromMenubar: false},
     /* {component: WorkExperiencePage, name:'Work Experience', excludeFromMenubar: false}, */
     /* {component: SkillsPage, name:'Skills', excludeFromMenubar: false}, */
@@ -85,7 +86,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    min-width: 600px;
+    min-width: 450px;
   }
   :global(*){
     margin: 0;

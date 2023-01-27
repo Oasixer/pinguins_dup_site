@@ -21,14 +21,12 @@
 
   let menubarOuterDiv;
 
+
   function test(){
     console.log('hi!');
   }
-
-	$: sectionsFiltered = sections.filter(i=>!i.excludeFromMenubar);
-  /* $: sectionsRight = sections.slice(1).filter(i=>!i.excludeFromMenubar); */
-  /* $: sectionsLeft = sections.slice(0,2).filter(i=>!i.excludeFromMenubar); */
-  /* $: sectionsRight = sections.slice(2).filter(i=>!i.excludeFromMenubar); */
+  $: sectionsLeft = sections.slice(0,1).filter(i=>!i.excludeFromMenubar);
+  $: sectionsRight = sections.slice(1).filter(i=>!i.excludeFromMenubar);
   $: floaty = mobile ? y > 250 : floaty;
   /* $: widthLT = Math.ceil(width / 50)*50 */
 
@@ -66,8 +64,8 @@
 
   div#singleButton{
     position:fixed;
-    left:13px;
-    top:26px;
+    left:10px;
+    top:10px;
     z-index: 999;
     width: auto;
     height: auto;
@@ -91,10 +89,12 @@
   }
 
   div#mobileMenubar{
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
     /* align-content: center; */
     align-items: center;
     justify-content: space-between;
+		width: 100vw;
+		max-width: 100vw;
   }
   
   div.menubar.floaty{
@@ -116,7 +116,22 @@
 
   div.left{
     margin-left: 30px;
-    margin-right: auto;
+		margin-right: auto;
+		margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+  }
+
+  div.left.mobile{
+		margin: 0;
+    padding: 0;
+    margin-left: 50px;
+		max-width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
   }
 
   div.menubar.smaller div.left{
@@ -145,7 +160,11 @@
   /* } */
 
   img#logo{
-    max-height: 70px;
+    /* max-height: 70px; */
+    /* margin-bottom: 5px; */
+		width: 100%;
+		max-height: 80px;
+    /* height: auto; */
     margin-bottom: 5px;
   }
 
@@ -196,6 +215,7 @@
     outline: none;
     background-color: #86A8D6;
   }
+
   button.selected:focus{
     outline: none;
   }
@@ -238,6 +258,15 @@
     background-color: rgba(0,0,0,0);
     display: flex;
 	}
+	div.learnMoreContainer{
+		position: absolute;
+		z-index: 100;
+		left:0;
+		top: 0;
+		height: 100vh;
+		width: 100vw;
+		display: flex;
+	}
 	button#learnMore{
     cursor: pointer;
     border: none;
@@ -249,12 +278,16 @@
     text-transform: none;
 		width: 300px;
 		height: 70px;
+		position: relative;
+		/* margin-right: auto; */
+		/* margin-left: auto; */
+		margin: auto;
     /* color: #000000; */
     color: #ffffff;
     background-color: #86A8D6;
     border-radius: 5px;
     padding: 9px;
-		z-index: 20;
+		z-index: 999;
     opacity: 100%;
     /* margin: auto; */
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -266,16 +299,16 @@
     border-radius: 5px;
 		box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
     /* margin: 35vh auto 0 auto; */
-    left: 40%;
-		position: absolute;
+    /* left: 40%; */
+		/* position: absolute; */
 		z-index: 100;
-   -webkit-transform: translateX(-40%);
-   -moz-transform: translateX(-40%);
-   transform: translateX(-40%);
-    top: 40%;
-   -webkit-transform: translateY(-40%);
-   -moz-transform: translateY(-40%);
-   transform: translateY(-40%);
+   /* -webkit-transform: translateX(-40%); */
+   /* -moz-transform: translateX(-40%); */
+   /* transform: translateX(-40%), translateY(-40%); */
+    /* top: 40%; */
+   /* -webkit-transform: translateY(-40%); */
+   /* -moz-transform: translateY(-40%); */
+   /* transform: translateY(-40%); */
 	}
   button#learnMore:active{
     background: none;
@@ -294,9 +327,11 @@
 <svelte:window bind:outerWidth={width}/>
 {#if !floaty}
   <!-- <div class="fullscreen-invisible"> -->
-	<button id="learnMore"
-				 on:click={()=>runMoveDispatcher(1)}>Learn More
-	</button>
+	<div class="learnMoreContainer">
+		<button id="learnMore"
+					 on:click={()=>runMoveDispatcher(1)}>Learn More
+		</button>
+	</div>
   <!-- </div> -->
 {/if}
 <div class='menubar'
@@ -308,13 +343,33 @@
     <div style="{(mobileSidebarOpen || !floaty)?'position: absolute; left: 20px; top: 26px;':''}">
       <Hamburger bind:open={mobileSidebarOpen}/>
     </div>
-    {#if y<displayHamburgerHeight || mobileSidebarOpen}
-      <!-- <button class='selected' style='font-size: 20px; font-weight: bold; margin-left: 0; padding-top: 27px;' on:click={()=>runMoveDispatcher(0)}> -->
-      <!-- Kaelan Moffett -->
-      <!-- </button> -->
+    {#if y<displayHamburgerHeight && !mobileSidebarOpen}
+			<!-- <button style='font-size: 20px; font-weight: bold; margin-left: 0; padding-top: 27px;' on:click={()=>runMoveDispatcher(0)}> -->
+			<!-- Kaelan -->
+			<!-- </button> -->
+      <div class='group left' class:floaty>
+				<button style='padding: 0; margin: 0; margin-left: {mobileSidebarOpen?50:50}px' on:click={()=>runMoveDispatcher(0)}>
+					<img id='logo' src={src_logo_transparent}/>
+				</button>
+      </div>
+    {:else if !mobileSidebarOpen}
+      <div class='group left' class:floaty>
+      {#each sections as section, n}
+        <button
+          class:selected={curSection==n}
+          on:click={()=>runMoveDispatcher(n)}>
+          {section.name}
+        </button>
+      {/each}
+    </div>
     {/if}
     {#if mobileSidebarOpen}
-      {#each [...sectionsLeft, ...sectionsRight] as section, n}
+      <div class='group left' class:floaty>
+				<button style='padding: 0; margin: 0; margin-left: {mobileSidebarOpen?50:50}px' on:click={()=>runMoveDispatcher(0)}>
+					<img id='logo' src={src_logo_transparent}/>
+				</button>
+      </div>
+      {#each sectionsRight as section, n}
         <button
           class:selected={curSection==n}
           style="{n===0?'margin-top:25px;':n===sectionsLeft.length+sectionsRight.length-1?'padding-bottom: 27px':''}"
@@ -327,31 +382,16 @@
     <div class='group left' class:floaty>
       <img id='logo' src={src_logo_transparent}/>
 		</div>
-    <!-- {#each sectionsFiltered as section, n} -->
-        <!--
-        <button
-          class:selected={curSection==n}
-          on:click={()=>runMoveDispatcher(n)}>
-          {section.name}
-        </button>
-        -->
-        <!-- {/each} -->
-        <!-- </div> -->
-    <!-- {#if !floaty} -->
-    <!-- <button class='selected' on:click={()=>runMoveDispatcher(0)}> -->
-    <!-- Kaelan Moffett -->
-    <!-- </button> -->
-    <!-- {/if} -->
-    <div class='group right' class:floaty>
+  {/if}
+  <div class='group right' class:floaty>
       {#if !mobile}
-        {#each sectionsFiltered as section, n}
+        {#each sectionsRight as section, n}
           <button
-            class:selected={curSection==n}
-            on:click={()=>runMoveDispatcher(n)}>
+            class:selected={curSection==n+sectionsLeft.length}
+            on:click={()=>runMoveDispatcher(n+sectionsLeft.length)}>
             {section.name}
           </button>
         {/each}
       {/if}
     </div>
-  {/if}
 </div>
