@@ -2,7 +2,6 @@
   import Home from '../components/home/Home.svelte';
   import Overview from '../components/overview/Overview.svelte';
   /* import Portfolio from '../components/portfolio/Portfolio.svelte'; */
-	import Contact from '../components/contact/Contact.svelte';
 	import Menubar from '../components/components/Menubar2.svelte';
 	import Specifications from '../components/specifications/Specifications.svelte';
 	import Team from '../components/team/Team.svelte';
@@ -86,6 +85,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    min-width: 600px;
   }
   :global(*){
     margin: 0;
@@ -144,6 +144,6 @@
 {/if}
 
   {#each sections as section, n}
-    <svelte:component this={section.component} bind:height={section.height} bg_color={getColor(section, n)} on:move={move} mobile={width<=maxMobileWidth}/>
+    <svelte:component this={section.component} bind:height={section.height} bind:width={width} bg_color={getColor(section, n)} on:move={move} mobile={width<=maxMobileWidth}/>
   {/each}
   

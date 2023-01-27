@@ -6,6 +6,7 @@
   let src_fourier = './images/fourier.gif';
   export let bg_color;
   export let mobile;
+  export let width;
 
   let aboutElement;
   let text=``

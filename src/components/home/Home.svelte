@@ -2,6 +2,7 @@
   export let height=undefined;
   export let bg_color; // unused bc we use a seperate color for home
   export let mobile;
+  export let width;
 
   import { onMount, createEventDispatcher } from 'svelte';
 

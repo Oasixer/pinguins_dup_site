@@ -4,6 +4,9 @@
   let src_gif = './images/gps.gif';
   let src_deeptrekker = './images/deep_trekker_cropped.jpg';
   export let mobile;
+  export let width;
+
+	$: wide = width > 800;
 
   let overviewElement;
   let text=[`Our product is called Distributed Underwater Positioning (DUP). DUP allows robots underwater to determine their position in 3D space through a system of multilateration relative to fixed beacons, much like how GPS works above water.`,
@@ -31,6 +34,16 @@
     /* padding: 40px 15px 40px 15px; */
     padding: 70px;
   }
+  /* div.#overview{ */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* [> background-color: #0B1237; <] */
+    /* background-color: #031767; */
+    /* display: flex; */
+    /* flex-flow: column nowrap; */
+    /* [> padding: 40px 15px 40px 15px; <] */
+    /* padding: 70px; */
+  /* } */
   div.dark-container{
     background-color: #0B1237;
     border-radius: 5px;
@@ -44,7 +57,7 @@
 
   div.hstack{
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     align-items: stretch;
   }
   div.hstack.mobile{
@@ -72,9 +85,11 @@
     overflow-wrap: normal;
   }
 
+ /* uhhh i changed my mind about clip top   */
 	.clip-top{
 		position: relative;
-		margin-top: -40px;
+		/* margin-top: -40px; <-- actual clip-top (img protrudes above its card container; a sort of quirky modern design. Decided I dont like it anymore but leave this for future ref.). */
+		margin-top: 20px;
 	}
 
   .card{
@@ -89,10 +104,24 @@
 		background-color: #5f5DAB;
 		/* background-color: #fefefe; */
 		background-color: #0B1237;
+		max-width: 400px;
 	}
+	/* div.card2{ */
+		/* background-color: #5f5DAB; */
+		/* background-color: #0B1237; */
+	/* } */
 	div.card2{
 		background-color: #5f5DAB;
 		background-color: #0B1237;
+		max-width: 400px;
+	}
+	div.card1.wide{
+		width: 30vw;
+		max-width: 800px;
+	}
+	div.card2.wide{
+		width: 30%;
+		max-width: 800px;
 	}
 
   p{
@@ -140,12 +169,12 @@
     <h1 class:mobile>Overview</h1>
     {#if !mobile}
       <div class='hstack' class:mobile>
-        <div class='card card1'>
+				<div class='card card1' class:wide>
         {#each text as t}
           <p class:mobile>{t}</p>
         {/each}
         </div>
-				<div class='card card2 vstack' style="margin-left: 40px;">
+				<div class='card card2 vstack' class:wide style="margin-left: 40px;">
 					<img alt='demo gif' class= "clip-top card" id='demo-gif' src={src_gif}/>
 					<img class="clip-top card" style="margin-top: 0;" alt='deep trekker robot' id='deeptrekker' src={src_deeptrekker}/>
 				</div>

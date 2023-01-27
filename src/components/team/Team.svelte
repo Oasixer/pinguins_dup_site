@@ -2,6 +2,7 @@
   export let height=undefined;
   export let bg_color;
   export let mobile;
+  export let width;
 
   let teamElement;
 	let members = [{
