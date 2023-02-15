@@ -7,12 +7,37 @@
 
   let base = './images/build_blog/';
 
-  let images = [
-    "mould.jpg",
-    "packages.jpg",
-    "piezo.jpg",
-    "machining.jpg"
-  ];
+  let items = [
+    {
+      title: 'Build Blog Week 1 (Jan 27th)',
+      images: [
+        "mould.jpg",
+        "packages.jpg",
+        "piezo.jpg",
+        "machining.jpg"
+      ],
+      paragraphs:
+			['This week, we finalized our BOM, and received our Acetal tube, Teensy microprocessors, electronics, and polyurethane. We machine a prototype acetal tube using a lathe at the engineering machine shop on campus. The end cap mould was 3d printed, ready to be have polyurethane poured into it to seal the pressure vessel. On the software side, we received the teensy microprocessors we intend to use, and are now working on implementing a data collection system for the testing phase in mid February. We also finalized the coding and testing our main algorithms for the project.  We also finalized our testing plan in collaboration with our stakeholder, Deep Trekker']
+		},{
+      title: 'Build Blog Week 2 (Feb 3)',
+      images: [
+				'teensy_networking.jpg',
+				"tubes.jpg"
+      ],
+      paragraphs:
+			['On the mechanical side, the first potted unit was built to help develop the manufacturing process of the transponder. Milling operations on 2 units (including the main bodies and caps) were completed. Later this week 2 full unit builds will be accomplished and tested for mechanical durability at 50m depth.',
+			'On the software side, we got teensy microprocessors set up and tested some algorithms. We were able to run the discrete sliding window fourier transform 3x faster than needed! ']
+		},{
+      title: 'Build Blog Week 3 (Feb 10)',
+      images: [
+				"boards.jpg",
+      ],
+      paragraphs:
+			['Electrical systems made a lot of progress this week. All 3 regulators are working, we have DAC sine wave generation, High voltage sine amplification, Input signal filtering and amplification, and the Transmit / receive switching relay. At a higher level, we have 3 out of 4 PCBs under construction, ~50% complete. On the software side we are working on defining all the messages and datatypes, and serializing and deserializing on both the client and server sides.'
+			]
+		}
+
+  ]
 
 	$: wide = width > 900;
 
@@ -179,31 +204,35 @@
   class:mobile
   bind:this={blogElement}
   bind:offsetHeight={height}>
-    <h1 class:mobile>BuildBlog</h1>
-		<div class='vstack' style="flex-flow: {wide?'row nowrap;':'row wrap;'}">
-			<div class="card card1">
-        <h3>Build Blog Week 1 (Jan 27th)</h3>
-        <p>
-This week, we finalized our BOM, and received our Acetal tube, Teensy microprocessors, electronics, and polyurethane. We machine a prototype acetal tube using a lathe at the engineering machine shop on campus. The end cap mould was 3d printed, ready to be have polyurethane poured into it to seal the pressure vessel. On the software side, we received the teensy microprocessors we intend to use, and are now working on implementing a data collection system for the testing phase in mid February. We also finalized the coding and testing our main algorithms for the project.  We also finalized our testing plan in collaboration with our stakeholder, Deep Trekker
-        </p>
-			</div>
+    <h1 class:mobile>Build Blog</h1>
+    {#each items as item}
+      <div class='vstack' style="flex-flow: {wide?'row nowrap;':'row wrap;'}">
+        <div class="card card1">
+          <h3>{item.title}</h3>
+          {#each item.paragraphs as paragraph}
+            <p>
+              {paragraph}
+            </p>
+          {/each}
+        </div>
       <div class="card card1" style="display: flex; flex-flow: column nowrap;">
         <h3>Images</h3>
-				{#if wide}
-					<div class="hstack">
-						{#each images as image}
-							<img class='blog-image-sqr' alt='alt' src={base+image}/>
-						{/each}
-					</div>
-				{:else}
+        <!-- {#if wide} -->
+        <!-- <div class="hstack"> -->
+        <!-- {#each item.images as image} -->
+        <!-- <img class='blog-image-sqr' alt='alt' src={base+image}/> -->
+        <!-- {/each} -->
+        <!-- </div> -->
+        <!-- {:else} -->
 					<div class="vstack">
-						{#each images as image}
+						{#each item.images as image}
 							<img class='blog-image-sqr' alt='alt' src={base+image}/>
 						{/each}
 					</div>
-        {/if}
+          <!-- {/if} -->
 			</div>
 		</div>
+    {/each}
 		<!--
     {#if !mobile}
       <div class='hstack' class:mobile>
