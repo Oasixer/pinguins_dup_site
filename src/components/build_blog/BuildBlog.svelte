@@ -35,8 +35,54 @@
       paragraphs:
 			['Electrical systems made a lot of progress this week. All 3 regulators are working, we have DAC sine wave generation, High voltage sine amplification, Input signal filtering and amplification, and the Transmit / receive switching relay. At a higher level, we have 3 out of 4 PCBs under construction, ~50% complete. On the software side we are working on defining all the messages and datatypes, and serializing and deserializing on both the client and server sides.'
 			]
-		}
-
+		},
+    {
+      title: 'Build Blog Week 4 (Feb 17)',
+      images: [
+				"pressure_transduce.jpg",
+      ],
+      paragraphs:
+			['This week, we fit the pressure transducers inside the acetal tubes, and finishes the main software architecture. We also used Matlab to verify the fourier transform math.'
+			]
+		},
+    {
+      title: 'Build Blog Week 5 (Feb 24)',
+      images: [
+				"handles.jpg", "sealed.jpg"
+      ],
+      paragraphs:
+			['This week, we created handles for easy removal of the pressure-rated caps, and sealed them up for the first time. We were able to submerge them for an extended period without experiencing any leaks, hooray!'
+			]
+		},
+    {
+      title: 'Build Blog Week 6 (March 3rd)',
+      images: [
+        'testing.png'
+      ],
+      paragraphs:
+			[
+        'This week, we finished machining all of the caps, including adding mounting holes to attach nodes to Deep Trekker\'s ROV. With this done, all hardware manufacturing is finished, and we have four fully functional nodes.',
+        'Using the two previously completed nodes, we were able to characterize and calibrate distance calculation during our testing in Deep Trekker\'s facility. With all four, we were able to accurately measure the position of a node attached to an ROV.',
+			]
+		},{
+      title: 'Build Blog Week 7 (March 10th)',
+      images: [
+        'graph.png'
+      ],
+      paragraphs:
+			[
+        'With the functioning positioning system, we began testing our autocalibration algorithm. At Deep Trekker\'s facility, we were able to consistently use our algorithm to automatically detect the positions of each of our nodes.'
+			]
+		},{
+      title: 'Build Blog Week 8 (March 17th)',
+      images: [
+        'pac1.jpg', 'group.jpg'
+      ],
+      paragraphs:
+			[
+        'We went to the PAC pool for further testing of our system. We checked our range in the larger facility, and were able to confirm that we could still detect a signal at the longest distance we could test in the pool. Extrapolating from the data, we determined that our system\'s range was larger than 50m. Additionally, when testing our positioning system, we saw an error of less than 30cm, showing our system works well in multiple different environments. We also took an incredibly cute group photo.',
+			]
+		},
   ]
 
 	$: wide = width > 900;
